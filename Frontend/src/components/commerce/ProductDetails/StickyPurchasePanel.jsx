@@ -2,12 +2,7 @@ import Price from "../Price";
 import Button from "../../ui/Button";
 import Typography from "../../ui/Typography";
 
-export default function StickyPurchasePanel({
-  product,
-  onAddToCart,
-  onBuyNow,
-  isAdding = false,
-}) {
+export default function StickyPurchasePanel({ product, onAddToCart, onBuyNow, isAdding = false }) {
   const { name = "", price = 0, originalPrice, stock = 10 } = product;
   const isOutOfStock = stock <= 0;
 

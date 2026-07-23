@@ -7,7 +7,7 @@ export async function seedInitialProducts() {
     // If the database doesn't have exactly 250 products, clean and seed it
     if (count !== 250) {
       console.log(`Product count in database is ${count}. Re-seeding 250 normalized products...`);
-      
+
       // Clear existing products
       await productModel.deleteMany({});
       console.log("Cleared existing products from database.");
@@ -22,7 +22,9 @@ export async function seedInitialProducts() {
       });
 
       await productModel.insertMany(productsToInsert);
-      console.log(`Successfully seeded ${productsToInsert.length} products with MongoDB ObjectIds.`);
+      console.log(
+        `Successfully seeded ${productsToInsert.length} products with MongoDB ObjectIds.`
+      );
     } else {
       console.log("Database already contains 250 normalized products. Skipping seeding.");
     }

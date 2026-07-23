@@ -1,4 +1,4 @@
-import { useContext, useState } from 'react';
+import { useContext, useState } from "react";
 import { toast } from "react-toastify";
 import ThemeContext from "../context/Theme/ThemeContext.jsx";
 import CartContext from "../context/Cart/CartContext.jsx";

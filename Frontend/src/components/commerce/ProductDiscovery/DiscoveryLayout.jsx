@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect } from "react";
 import DiscoveryContainer from "./DiscoveryContainer";
 import DiscoveryHeader from "./DiscoveryHeader";
 import DiscoveryToolbar from "../DiscoveryToolbar";

@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect } from "react";
 import ThemeContext from "./ThemeContext";
 
 const ThemeProvider = (props) => {

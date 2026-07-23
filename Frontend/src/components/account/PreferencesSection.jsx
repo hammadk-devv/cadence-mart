@@ -1,4 +1,4 @@
-import { useContext } from 'react';
+import { useContext } from "react";
 import NotificationSettings from "./NotificationSettings";
 import ThemeContext from "../../context/Theme/ThemeContext";
 import Checkbox from "../ui/Checkbox";

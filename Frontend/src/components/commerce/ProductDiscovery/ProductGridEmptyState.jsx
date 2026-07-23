@@ -14,8 +14,8 @@ export default function ProductGridEmptyState() {
         No Products Found
       </Typography>
       <Typography variant="body-sm">
-        We couldn&apos;t find any products matching your catalog selection. Try removing active filters
-        or browsing another category.
+        We couldn&apos;t find any products matching your catalog selection. Try removing active
+        filters or browsing another category.
       </Typography>
     </motion.div>
   );

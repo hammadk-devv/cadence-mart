@@ -23,8 +23,8 @@ export default function SecuritySection() {
           variant="body-xs"
           className="text-[var(--color-text-secondary)] font-medium mb-2 leading-relaxed"
         >
-          Add an extra layer of security to your account. Once enabled, you&apos;ll need to enter a login
-          verification code sent to your phone.
+          Add an extra layer of security to your account. Once enabled, you&apos;ll need to enter a
+          login verification code sent to your phone.
         </Typography>
         <Button
           variant="outline"

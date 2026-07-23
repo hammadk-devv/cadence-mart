@@ -1,4 +1,3 @@
-
 export default function AuthDivider() {
   return (
     <div className="flex items-center gap-4 py-2 select-none">

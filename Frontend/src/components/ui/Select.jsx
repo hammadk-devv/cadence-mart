@@ -1,4 +1,3 @@
-
 export default function Select({
   label,
   id,

@@ -1,4 +1,3 @@
-
 export default function DashboardSidebar({ tabs = [], activeTab, onTabChange }) {
   return (
     <div className="flex flex-col gap-1 border border-[var(--color-border)] rounded-[var(--radius-lg)] p-4 bg-[var(--color-card-bg)] shadow-[var(--shadow-sm)] sticky top-24 select-none">

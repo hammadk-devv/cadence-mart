@@ -15,7 +15,8 @@ const MOCK_PRODUCTS = [
     rating: 4.8,
     reviews: 124,
     featured: true,
-    image: "https://images.unsplash.com/photo-1551028719-00167b16eac5?w=600&auto=format&fit=crop&q=80",
+    image:
+      "https://images.unsplash.com/photo-1551028719-00167b16eac5?w=600&auto=format&fit=crop&q=80",
     stock: 12,
   },
   {
@@ -27,7 +28,8 @@ const MOCK_PRODUCTS = [
     rating: 4.6,
     reviews: 89,
     featured: true,
-    image: "https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=600&auto=format&fit=crop&q=80",
+    image:
+      "https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=600&auto=format&fit=crop&q=80",
     stock: 8,
   },
   {
@@ -39,7 +41,8 @@ const MOCK_PRODUCTS = [
     rating: 4.5,
     reviews: 56,
     featured: true,
-    image: "https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=600&auto=format&fit=crop&q=80",
+    image:
+      "https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=600&auto=format&fit=crop&q=80",
     stock: 15,
   },
   {
@@ -51,7 +54,8 @@ const MOCK_PRODUCTS = [
     rating: 4.7,
     reviews: 210,
     featured: true,
-    image: "https://images.unsplash.com/photo-1505797149-43b0069ec26b?w=600&auto=format&fit=crop&q=80",
+    image:
+      "https://images.unsplash.com/photo-1505797149-43b0069ec26b?w=600&auto=format&fit=crop&q=80",
     stock: 5,
   },
 ];

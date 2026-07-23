@@ -1,4 +1,3 @@
-
 export default function ProductImage({ src, alt, className = "" }) {
   return (
     <div

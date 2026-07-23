@@ -13,7 +13,8 @@ export default function CheckoutSuccess({ orderId }) {
         Thank You for Your Order!
       </Typography>
       <Typography variant="body" className="text-[var(--color-text-secondary)] max-w-md mb-2">
-        Your payment was processed successfully. We&apos;ve sent a confirmation email with order details.
+        Your payment was processed successfully. We&apos;ve sent a confirmation email with order
+        details.
       </Typography>
       <Typography variant="body-sm" className="font-bold text-[var(--color-text-primary)] mb-8">
         Order ID: <span className="text-[var(--color-primary)]">{orderId}</span>

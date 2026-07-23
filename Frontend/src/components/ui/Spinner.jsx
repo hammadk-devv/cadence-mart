@@ -1,4 +1,3 @@
-
 export default function Spinner({ size = "md", className = "" }) {
   const sizeClasses = {
     sm: "w-4 h-4 border-2",

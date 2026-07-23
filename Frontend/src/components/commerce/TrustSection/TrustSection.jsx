@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect } from "react";
 import TrustGrid from "./TrustGrid";
 import TrustSkeleton from "./TrustSkeleton";
 import Container from "../../ui/Container";

@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect } from "react";
 import NewsletterCard from "./NewsletterCard";
 import NewsletterSkeleton from "./NewsletterSkeleton";
 import Container from "../../ui/Container";

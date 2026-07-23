@@ -1,4 +1,3 @@
-
 export default function Skeleton({
   variant = "text", // text, rect, circle
   width = "100%",

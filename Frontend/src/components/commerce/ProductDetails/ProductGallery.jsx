@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState } from "react";
 import { ChevronLeft, ChevronRight, Maximize2, X } from "lucide-react";
 import IconButton from "../../ui/IconButton";
 

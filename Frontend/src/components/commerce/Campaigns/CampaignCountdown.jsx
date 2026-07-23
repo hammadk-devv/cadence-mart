@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect } from "react";
 import Typography from "../../ui/Typography";
 
 export default function CampaignCountdown({ className = "" }) {

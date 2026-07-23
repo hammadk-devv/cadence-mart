@@ -1,4 +1,3 @@
-
 export default function BrandLogo({ name = "", className = "" }) {
   const brandName = (name || "").toLowerCase().trim();
   const commonClasses = `w-auto text-gray-400/60 group-hover:text-[var(--color-primary)] group-hover:scale-105 transition-all duration-300 ease-[cubic-bezier(0.22,0.61,0.36,1)] ${className}`;

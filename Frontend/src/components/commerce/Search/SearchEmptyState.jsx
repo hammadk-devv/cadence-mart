@@ -14,8 +14,8 @@ export default function SearchEmptyState({ query = "" }) {
         No Search Results Found
       </Typography>
       <Typography variant="body-sm">
-        We couldn&apos;t find any products matching &quot;{query}&quot;. Try checking your spelling or adjusting
-        your filters.
+        We couldn&apos;t find any products matching &quot;{query}&quot;. Try checking your spelling
+        or adjusting your filters.
       </Typography>
     </motion.div>
   );

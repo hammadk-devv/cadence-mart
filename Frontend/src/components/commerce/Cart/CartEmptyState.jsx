@@ -13,8 +13,8 @@ export default function CartEmptyState() {
         Your Cart is Empty
       </Typography>
       <Typography variant="body-sm" className="text-[var(--color-text-secondary)] max-w-md mb-8">
-        Looks like you haven&apos;t added anything to your cart yet. Explore our curated collections and
-        discover premium products.
+        Looks like you haven&apos;t added anything to your cart yet. Explore our curated collections
+        and discover premium products.
       </Typography>
       <Link to="/shop">
         <Button variant="primary" className="px-8 py-3 font-bold uppercase">

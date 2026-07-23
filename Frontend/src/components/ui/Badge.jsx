@@ -1,4 +1,3 @@
-
 export default function Badge({
   children,
   variant = "primary", // primary, secondary, success, danger, warning, info

@@ -1,4 +1,3 @@
-
 export default function CampaignMedia({ src, alt, className = "" }) {
   if (!src) return null;
 

@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState } from "react";
 import ProductCard from "../ProductCard";
 import Typography from "../../ui/Typography";
 

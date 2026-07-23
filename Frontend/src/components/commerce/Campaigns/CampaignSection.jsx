@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect } from "react";
 import CampaignGrid from "./CampaignGrid";
 import CampaignSkeleton from "./CampaignSkeleton";
 import Container from "../../ui/Container";

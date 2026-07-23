@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState } from "react";
 import NewsletterInput from "./NewsletterInput";
 import NewsletterCTA from "./NewsletterCTA";
 import Typography from "../../ui/Typography";

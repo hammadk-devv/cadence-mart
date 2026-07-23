@@ -1,4 +1,3 @@
-
 export default function Divider({
   orientation = "horizontal", // horizontal, vertical
   className = "",

@@ -1,4 +1,3 @@
-
 export default function CartItemImage({ src, alt, className = "" }) {
   return (
     <div

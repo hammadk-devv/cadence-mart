@@ -1,4 +1,4 @@
-import { useContext } from 'react';
+import { useContext } from "react";
 import ProductContext from "../context/Product/ProductContext.jsx";
 import DiscoveryLayout from "../components/commerce/ProductDiscovery";
 

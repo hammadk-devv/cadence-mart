@@ -2,12 +2,7 @@ import Price from "../Price";
 import Typography from "../../ui/Typography";
 
 export default function CartItemDetails({ product }) {
-  const {
-    name = "",
-    brand = "Cadence Mart",
-    price = 0,
-    originalPrice,
-  } = product;
+  const { name = "", brand = "Cadence Mart", price = 0, originalPrice } = product;
 
   return (
     <div className="flex flex-col gap-1 w-full">

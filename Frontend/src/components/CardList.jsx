@@ -86,8 +86,8 @@ function CardList({ category, sortItem }) {
           No Products Found
         </h3>
         <p className="text-[var(--color-text-secondary)] mb-6 max-w-md">
-          We couldn&apos;t find any products in this collection matching your active filter criteria. Try
-          adjusting your sidebar selections or click below to reset.
+          We couldn&apos;t find any products in this collection matching your active filter
+          criteria. Try adjusting your sidebar selections or click below to reset.
         </p>
         <button
           type="button"

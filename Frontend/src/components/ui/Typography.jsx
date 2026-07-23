@@ -1,4 +1,3 @@
-
 export default function Typography({
   children,
   variant = "body", // h1, h2, h3, h4, body, body-sm, caption

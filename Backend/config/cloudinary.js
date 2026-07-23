@@ -6,9 +6,7 @@ const connectCloudinary = () => {
 
   // Skip Cloudinary configuration if credentials are not provided.
   if (!cloudName || !apiKey || !apiSecret) {
-    console.warn(
-      "Cloudinary is not configured. Image upload functionality is disabled."
-    );
+    console.warn("Cloudinary is not configured. Image upload functionality is disabled.");
     return;
   }
 

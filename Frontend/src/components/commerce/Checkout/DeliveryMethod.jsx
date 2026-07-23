@@ -72,7 +72,7 @@ export default function DeliveryMethod({ selectedMethod, onChange, onSubmit }) {
       <Button
         variant="primary"
         onClick={onSubmit}
-        className="self-end px-8 py-2.5 font-bold uppercase mt-2"
+        className="w-full sm:w-auto sm:self-end px-8 py-2.5 font-bold uppercase mt-2"
       >
         Continue to Payment
       </Button>

@@ -107,7 +107,7 @@ function CardList({ category, sortItem }) {
       variants={staggerContainerVariants}
       initial="hidden"
       animate="visible"
-      className="card-container"
+      className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 w-full"
     >
       {loding
         ? key.map((item) => (

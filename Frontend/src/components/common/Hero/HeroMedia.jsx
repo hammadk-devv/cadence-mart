@@ -27,6 +27,7 @@ export default function HeroMedia({ className = "" }) {
           alt="Premium headphones design mockup banner"
           className="w-full h-auto object-contain drop-shadow-[0_20px_50px_rgba(15,81,50,0.15)]"
           loading="eager"
+          fetchPriority="high"
         />
       </motion.div>
     </div>

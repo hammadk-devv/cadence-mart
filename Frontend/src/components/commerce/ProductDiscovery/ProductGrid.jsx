@@ -1,9 +1,10 @@
+import React from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import ProductCard from "../ProductShowcase/ProductCard";
 import ProductGridEmptyState from "./ProductGridEmptyState";
 import { staggerContainerVariants } from "../../../styles/motion";
 
-export default function ProductGrid({ items = [], view = "grid" }) {
+function ProductGrid({ items = [], view = "grid" }) {
   if (items.length === 0) {
     return <ProductGridEmptyState />;
   }
@@ -17,7 +18,7 @@ export default function ProductGrid({ items = [], view = "grid" }) {
       className={
         view === "list"
           ? "flex flex-col gap-4"
-          : "grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6"
+          : "grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6"
       }
     >
       <AnimatePresence mode="popLayout">
@@ -37,3 +38,5 @@ export default function ProductGrid({ items = [], view = "grid" }) {
     </motion.div>
   );
 }
+
+export default React.memo(ProductGrid);

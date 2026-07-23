@@ -10,7 +10,10 @@ const stats = [
 
 export default function HeroStats({ className = "" }) {
   return (
-    <motion.div variants={slideUpVariants} className={`grid grid-cols-3 gap-6 ${className}`}>
+    <motion.div
+      variants={slideUpVariants}
+      className={`grid grid-cols-3 gap-3 sm:gap-6 ${className}`}
+    >
       {stats.map((stat, index) => (
         <div key={index} className="flex flex-col">
           <Typography variant="h3" className="font-extrabold text-[var(--color-primary)]">

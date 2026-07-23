@@ -123,7 +123,7 @@ export default function Footer({ className = "" }) {
                   variant="primary"
                   isLoading={isLoading}
                   isDisabled={isLoading}
-                  className="sm:self-end whitespace-nowrap"
+                  className="w-full sm:w-auto sm:self-end whitespace-nowrap"
                 >
                   Subscribe
                 </Button>

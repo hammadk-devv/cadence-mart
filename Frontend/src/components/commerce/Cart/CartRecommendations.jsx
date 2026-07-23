@@ -11,7 +11,7 @@ export default function CartRecommendations({ products = [] }) {
       <Typography variant="h3" className="font-extrabold mb-6 text-[var(--color-text-primary)]">
         You May Also Like
       </Typography>
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
         {suggestions.map((item) => (
           <ProductCard key={item._id} item={item} />
         ))}

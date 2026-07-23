@@ -61,7 +61,12 @@ export default function NewsletterForm({
           error={error}
           isDisabled={isLoading}
         />
-        <NewsletterCTA label={buttonLabel} isLoading={isLoading} isDisabled={isLoading} />
+        <NewsletterCTA
+          label={buttonLabel}
+          isLoading={isLoading}
+          isDisabled={isLoading}
+          className="w-full sm:w-auto"
+        />
       </div>
       {error && (
         <Typography variant="caption" className="text-[var(--color-danger)] font-semibold mt-1">

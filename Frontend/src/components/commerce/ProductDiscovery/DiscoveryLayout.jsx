@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useMemo, useCallback } from "react";
 import DiscoveryContainer from "./DiscoveryContainer";
 import DiscoveryHeader from "./DiscoveryHeader";
 import DiscoveryToolbar from "../DiscoveryToolbar";
@@ -22,6 +22,8 @@ export default function DiscoveryLayout({
   const [filteredItems, setFilteredItems] = useState([]);
 
   const debouncedSearch = useDebounce(discoveryState.search, 300);
+
+  const filtersSerialized = JSON.stringify(discoveryState.filters);
 
   useEffect(() => {
     let result = [...items];
@@ -84,87 +86,108 @@ export default function DiscoveryLayout({
     }
 
     setFilteredItems(result);
-  }, [items, debouncedSearch, discoveryState.filters, discoveryState.sorting]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [items, debouncedSearch, filtersSerialized, discoveryState.sorting]);
 
   const currentPage = discoveryState.pagination?.page || 1;
   const pageSize = discoveryState.pagination?.pageSize || 12;
   const totalItems = filteredItems.length;
   const totalPages = Math.max(Math.ceil(totalItems / pageSize), 1);
 
+  const handlePageChange = useCallback(
+    (newPage) => {
+      setDiscoveryState((prev) => ({
+        ...prev,
+        pagination: { ...prev.pagination, page: newPage },
+      }));
+    },
+    [setDiscoveryState]
+  );
+
   useEffect(() => {
     if (currentPage > totalPages) {
       handlePageChange(totalPages);
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [currentPage, totalPages]);
+  }, [currentPage, totalPages, handlePageChange]);
 
-  const handlePageChange = (newPage) => {
-    setDiscoveryState((prev) => ({
-      ...prev,
-      pagination: { ...prev.pagination, page: newPage },
-    }));
-  };
+  const handlePageSizeChange = useCallback(
+    (newPageSize) => {
+      setDiscoveryState((prev) => ({
+        ...prev,
+        pagination: { page: 1, pageSize: newPageSize },
+      }));
+    },
+    [setDiscoveryState]
+  );
 
-  const handlePageSizeChange = (newPageSize) => {
-    setDiscoveryState((prev) => ({
-      ...prev,
-      pagination: { page: 1, pageSize: newPageSize },
-    }));
-  };
-
-  const handleFilterChange = (newFilters) => {
-    setDiscoveryState((prev) => ({
-      ...prev,
-      filters: newFilters,
-      pagination: { ...prev.pagination, page: 1 },
-    }));
-  };
-
-  const handleSortChange = (newSort) => {
-    setDiscoveryState((prev) => ({
-      ...prev,
-      sorting: newSort,
-      pagination: { ...prev.pagination, page: 1 },
-    }));
-  };
-
-  const handleViewChange = (newView) => {
-    setDiscoveryState((prev) => ({ ...prev, view: newView }));
-  };
-
-  const handleSearchChange = (newSearch) => {
-    setDiscoveryState((prev) => ({
-      ...prev,
-      search: newSearch,
-      pagination: { ...prev.pagination, page: 1 },
-    }));
-  };
-
-  const handleRemoveFilter = (type, value) => {
-    setDiscoveryState((prev) => {
-      const newFilters = { ...prev.filters };
-      if (type === "category") {
-        newFilters.category = newFilters.category.filter((cat) => cat !== value);
-      } else if (type === "brand") {
-        newFilters.brand = newFilters.brand.filter((br) => br !== value);
-      } else if (type === "gender") {
-        newFilters.gender = (newFilters.gender || []).filter((g) => g !== value);
-      } else if (type === "subcategory") {
-        newFilters.subcategory = (newFilters.subcategory || []).filter((s) => s !== value);
-      } else if (type === "rating") {
-        newFilters.rating = null;
-      } else if (type === "availability") {
-        newFilters.availability = false;
-      }
-      return {
+  const handleFilterChange = useCallback(
+    (newFilters) => {
+      setDiscoveryState((prev) => ({
         ...prev,
         filters: newFilters,
         pagination: { ...prev.pagination, page: 1 },
-      };
-    });
-  };
+      }));
+    },
+    [setDiscoveryState]
+  );
 
-  const handleClearAllFilters = () => {
+  const handleSortChange = useCallback(
+    (newSort) => {
+      setDiscoveryState((prev) => ({
+        ...prev,
+        sorting: newSort,
+        pagination: { ...prev.pagination, page: 1 },
+      }));
+    },
+    [setDiscoveryState]
+  );
+
+  const handleViewChange = useCallback(
+    (newView) => {
+      setDiscoveryState((prev) => ({ ...prev, view: newView }));
+    },
+    [setDiscoveryState]
+  );
+
+  const handleSearchChange = useCallback(
+    (newSearch) => {
+      setDiscoveryState((prev) => ({
+        ...prev,
+        search: newSearch,
+        pagination: { ...prev.pagination, page: 1 },
+      }));
+    },
+    [setDiscoveryState]
+  );
+
+  const handleRemoveFilter = useCallback(
+    (type, value) => {
+      setDiscoveryState((prev) => {
+        const newFilters = { ...prev.filters };
+        if (type === "category") {
+          newFilters.category = newFilters.category.filter((cat) => cat !== value);
+        } else if (type === "brand") {
+          newFilters.brand = newFilters.brand.filter((br) => br !== value);
+        } else if (type === "gender") {
+          newFilters.gender = (newFilters.gender || []).filter((g) => g !== value);
+        } else if (type === "subcategory") {
+          newFilters.subcategory = (newFilters.subcategory || []).filter((s) => s !== value);
+        } else if (type === "rating") {
+          newFilters.rating = null;
+        } else if (type === "availability") {
+          newFilters.availability = false;
+        }
+        return {
+          ...prev,
+          filters: newFilters,
+          pagination: { ...prev.pagination, page: 1 },
+        };
+      });
+    },
+    [setDiscoveryState]
+  );
+
+  const handleClearAllFilters = useCallback(() => {
     setDiscoveryState((prev) => ({
       ...prev,
       filters: {
@@ -178,19 +201,25 @@ export default function DiscoveryLayout({
       },
       pagination: { ...prev.pagination, page: 1 },
     }));
-  };
+  }, [setDiscoveryState]);
 
-  const activeFiltersCount =
-    discoveryState.filters.category.length +
-    discoveryState.filters.brand.length +
-    (discoveryState.filters.gender || []).length +
-    (discoveryState.filters.subcategory || []).length +
-    (discoveryState.filters.rating ? 1 : 0) +
-    (discoveryState.filters.availability ? 1 : 0);
+  const activeFiltersCount = useMemo(() => {
+    return (
+      discoveryState.filters.category.length +
+      discoveryState.filters.brand.length +
+      (discoveryState.filters.gender || []).length +
+      (discoveryState.filters.subcategory || []).length +
+      (discoveryState.filters.rating ? 1 : 0) +
+      (discoveryState.filters.availability ? 1 : 0)
+    );
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [filtersSerialized]);
 
   const startIdx = (currentPage - 1) * pageSize;
   const endIdx = startIdx + pageSize;
-  const slicedItems = filteredItems.slice(startIdx, endIdx);
+  const slicedItems = useMemo(() => {
+    return filteredItems.slice(startIdx, endIdx);
+  }, [filteredItems, startIdx, endIdx]);
 
   return (
     <DiscoveryContainer className={className}>

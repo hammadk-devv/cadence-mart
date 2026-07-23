@@ -11,6 +11,7 @@ import Drawer from "./ui/Drawer";
 import Input from "./ui/Input";
 import Typography from "./ui/Typography";
 import MegaMenu from "./navigation/MegaMenu";
+import NotificationBadge from "./ui/NotificationBadge";
 
 export default function Navbar() {
   const { dark, setDark } = useTheme();
@@ -199,28 +200,26 @@ export default function Navbar() {
           {/* Wishlist Link */}
           <Link
             to="/wishlist"
-            className="p-2 text-gray-500 hover:text-[var(--color-primary)] focus-ring rounded-full relative flex items-center gap-1"
+            className="p-2 text-gray-500 hover:text-[var(--color-primary)] focus-ring rounded-full relative flex items-center justify-center"
             aria-label="Wishlist"
           >
-            <Heart className="w-5 h-5" />
-            {wishlistCount > 0 && (
-              <span className="absolute -top-1 -right-1 bg-[var(--color-primary)] text-white text-[10px] w-4.5 h-4.5 rounded-full flex items-center justify-center font-bold">
-                {wishlistCount}
-              </span>
-            )}
+            <div className="relative">
+              <Heart className="w-5 h-5" />
+              <NotificationBadge count={wishlistCount} variant="primary" />
+            </div>
           </Link>
 
           {/* Shopping Cart Trigger */}
           <Link
             to={token ? "/cart" : "/login"}
             onClick={handleCartClick}
-            className="p-2 text-gray-500 hover:text-[var(--color-primary)] focus-ring rounded-full relative flex items-center gap-1"
+            className="p-2 text-gray-500 hover:text-[var(--color-primary)] focus-ring rounded-full relative flex items-center justify-center"
             aria-label="Shopping cart"
           >
-            <ShoppingCart className="w-5 h-5" />
-            <span className="absolute -top-1 -right-1 bg-[var(--color-danger)] text-white text-[10px] w-4.5 h-4.5 rounded-full flex items-center justify-center font-bold">
-              {getCartCount()}
-            </span>
+            <div className="relative">
+              <ShoppingCart className="w-5 h-5" />
+              <NotificationBadge count={getCartCount()} variant="danger" />
+            </div>
           </Link>
 
           {/* Mobile Menu Hamburger */}
@@ -241,18 +240,42 @@ export default function Navbar() {
         title="Navigation Menu"
         position="left"
       >
+        <form
+          onSubmit={(e) => {
+            handleSearchSubmit(e);
+            setIsMobileOpen(false);
+          }}
+          className="flex items-center relative w-full mb-6"
+        >
+          <Input
+            id="mobile-header-search"
+            type="search"
+            placeholder="Search products..."
+            value={searchVal}
+            onChange={(e) => setSearchVal(e.target.value)}
+            className="w-full"
+          />
+          <button
+            type="submit"
+            className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 hover:text-[var(--color-primary)]"
+            aria-label="Submit search"
+          >
+            <Search className="w-4 h-4" />
+          </button>
+        </form>
+
         <nav className="flex flex-col gap-4">
           <Link
             to="/"
             onClick={() => setIsMobileOpen(false)}
-            className="text-base font-semibold py-2 border-b border-[var(--color-border)] text-[var(--color-text-primary)]"
+            className="text-base font-semibold py-2 border-b border-[var(--color-border)] text-[var(--color-text-primary)] hover:text-[var(--color-primary)] transition-colors"
           >
             Home
           </Link>
           <Link
-            to="/product"
+            to="/shop"
             onClick={() => setIsMobileOpen(false)}
-            className="text-base font-semibold py-2 border-b border-[var(--color-border)] text-[var(--color-text-primary)]"
+            className="text-base font-semibold py-2 border-b border-[var(--color-border)] text-[var(--color-text-primary)] hover:text-[var(--color-primary)] transition-colors"
           >
             Shop All
           </Link>
@@ -264,23 +287,23 @@ export default function Navbar() {
               Categories
             </Typography>
             <Link
-              to="/"
+              to="/shop?category=Electronics"
               onClick={() => setIsMobileOpen(false)}
-              className="text-sm text-[var(--color-text-secondary)]"
+              className="text-sm text-[var(--color-text-secondary)] py-1.5 hover:text-[var(--color-primary)] transition-colors"
             >
               Electronics
             </Link>
             <Link
-              to="/"
+              to="/shop?category=Fashion"
               onClick={() => setIsMobileOpen(false)}
-              className="text-sm text-[var(--color-text-secondary)]"
+              className="text-sm text-[var(--color-text-secondary)] py-1.5 hover:text-[var(--color-primary)] transition-colors"
             >
               Fashion
             </Link>
             <Link
-              to="/"
+              to="/shop?category=Home%20%26%20Living"
               onClick={() => setIsMobileOpen(false)}
-              className="text-sm text-[var(--color-text-secondary)]"
+              className="text-sm text-[var(--color-text-secondary)] py-1.5 hover:text-[var(--color-primary)] transition-colors"
             >
               Home & Living
             </Link>

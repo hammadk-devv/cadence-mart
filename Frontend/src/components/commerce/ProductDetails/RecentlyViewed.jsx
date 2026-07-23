@@ -34,7 +34,7 @@ export default function RecentlyViewed({ products = [], currentId }) {
       <Typography variant="h3" className="font-extrabold mb-6 text-[var(--color-text-primary)]">
         Recently Viewed
       </Typography>
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
         {historyItems.map((item) => (
           <ProductCard key={item._id} item={item} />
         ))}

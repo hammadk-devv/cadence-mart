@@ -1,7 +1,8 @@
+import React from "react";
 import { Grid, List } from "lucide-react";
 import IconButton from "../../ui/IconButton";
 
-export default function ViewSwitcher({ view = "grid", onChange, className = "" }) {
+function ViewSwitcher({ view = "grid", onChange, className = "" }) {
   return (
     <div
       className={`flex items-center gap-1 border border-[var(--color-border)] rounded-[var(--radius-md)] p-1 bg-[var(--color-card-bg)] ${className}`}
@@ -25,3 +26,5 @@ export default function ViewSwitcher({ view = "grid", onChange, className = "" }
     </div>
   );
 }
+
+export default React.memo(ViewSwitcher);

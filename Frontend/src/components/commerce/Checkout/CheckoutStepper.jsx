@@ -45,7 +45,7 @@ export default function CheckoutStepper({ steps = [], currentStep = 0, onStepCli
 
             {idx < steps.length - 1 && (
               <div
-                className={`flex-grow h-0.5 min-w-[30px] mx-2 rounded transition-all ${
+                className={`flex-grow h-0.5 min-w-[12px] sm:min-w-[30px] mx-1 sm:mx-2 rounded transition-all ${
                   idx < currentStep ? "bg-[var(--color-primary)]" : "bg-[var(--color-border)]"
                 }`}
               />

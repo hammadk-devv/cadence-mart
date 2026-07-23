@@ -12,11 +12,19 @@ import ProductActions from "./ProductActions";
 import ProductBadges from "./ProductBadges";
 import WishlistButton from "../WishlistButton";
 
-export default function ProductCard({ item, showActions = true, view = "grid", className = "" }) {
+function ProductCard({ item, showActions = true, view = "grid", className = "" }) {
   const { setProductId } = useContext(ProductContext);
   const { addToCart } = useContext(CartContext);
   const [isAdding, setIsAdding] = useState(false);
-  const [isFav, setIsFav] = useState(false);
+  const [isFav, setIsFav] = useState(() => {
+    try {
+      const stored = localStorage.getItem("cadence_favorites");
+      const favs = stored ? JSON.parse(stored) : [];
+      return favs.includes(item._id);
+    } catch (e) {
+      return false;
+    }
+  });
 
   React.useEffect(() => {
     const updateFavState = () => {
@@ -29,7 +37,6 @@ export default function ProductCard({ item, showActions = true, view = "grid", c
       }
     };
 
-    updateFavState();
     window.addEventListener("cadence_favorites_updated", updateFavState);
     return () => window.removeEventListener("cadence_favorites_updated", updateFavState);
   }, [item._id]);
@@ -191,3 +198,5 @@ export default function ProductCard({ item, showActions = true, view = "grid", c
     </motion.div>
   );
 }
+
+export default React.memo(ProductCard);

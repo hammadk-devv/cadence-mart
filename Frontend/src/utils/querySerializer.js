@@ -1,41 +1,38 @@
 export function serializeQuery(state) {
   const params = {};
 
-  if (state.search) params.search = state.search;
-  if (state.sorting && state.sorting !== "featured") params.sort = state.sorting;
-  if (state.view && state.view !== "grid") params.view = state.view;
+  params.search = state.search || "";
+  params.sort = state.sorting && state.sorting !== "featured" ? state.sorting : "";
+  params.view = state.view && state.view !== "grid" ? state.view : "";
 
   if (state.pagination) {
-    if (state.pagination.page && state.pagination.page !== 1) {
-      params.page = String(state.pagination.page);
-    }
-    if (state.pagination.pageSize && state.pagination.pageSize !== 12) {
-      params.pageSize = String(state.pagination.pageSize);
-    }
+    params.page =
+      state.pagination.page && state.pagination.page !== 1 ? String(state.pagination.page) : "";
+    params.pageSize =
+      state.pagination.pageSize && state.pagination.pageSize !== 12
+        ? String(state.pagination.pageSize)
+        : "";
+  } else {
+    params.page = "";
+    params.pageSize = "";
   }
 
   const filters = state.filters || {};
-  if (filters.category && filters.category.length > 0) {
-    params.category = filters.category.join(",");
-  }
-  if (filters.brand && filters.brand.length > 0) {
-    params.brand = filters.brand.join(",");
-  }
-  if (filters.gender && filters.gender.length > 0) {
-    params.gender = filters.gender.join(",");
-  }
-  if (filters.subcategory && filters.subcategory.length > 0) {
-    params.subcategory = filters.subcategory.join(",");
-  }
-  if (filters.rating) {
-    params.rating = String(filters.rating);
-  }
-  if (filters.availability) {
-    params.availability = "true";
-  }
+  params.category =
+    filters.category && filters.category.length > 0 ? filters.category.join(",") : "";
+  params.brand = filters.brand && filters.brand.length > 0 ? filters.brand.join(",") : "";
+  params.gender = filters.gender && filters.gender.length > 0 ? filters.gender.join(",") : "";
+  params.subcategory =
+    filters.subcategory && filters.subcategory.length > 0 ? filters.subcategory.join(",") : "";
+  params.rating = filters.rating ? String(filters.rating) : "";
+  params.availability = filters.availability ? "true" : "";
+
   if (filters.price) {
-    if (filters.price.min > 0) params.priceMin = String(filters.price.min);
-    if (filters.price.max < 1000) params.priceMax = String(filters.price.max);
+    params.priceMin = filters.price.min > 0 ? String(filters.price.min) : "";
+    params.priceMax = filters.price.max < 1000 ? String(filters.price.max) : "";
+  } else {
+    params.priceMin = "";
+    params.priceMax = "";
   }
 
   return params;

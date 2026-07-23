@@ -76,7 +76,7 @@ export default function ShippingAddressForm({ onSubmit, initialData = {} }) {
       <Button
         variant="primary"
         type="submit"
-        className="self-end px-8 py-2.5 font-bold uppercase mt-2"
+        className="w-full sm:w-auto sm:self-end px-8 py-2.5 font-bold uppercase mt-2"
       >
         Continue to Delivery
       </Button>

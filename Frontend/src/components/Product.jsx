@@ -156,7 +156,7 @@ export default function Product() {
   const isOutOfStock = stockLimit <= 0;
 
   return (
-    <Container className={`py-8 md:py-12 ${dark ? "primary-dark-active" : ""}`}>
+    <Container className={`pt-8 pb-24 md:py-12 ${dark ? "primary-dark-active" : ""}`}>
       {/* Product Details Columns layout */}
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-start">
         {/* Left Column: Gallery & Extra Tabs details */}

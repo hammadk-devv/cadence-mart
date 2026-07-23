@@ -4,21 +4,32 @@ import { seedInitialProducts } from "./seedProducts.js";
 
 const connectDB = async () => {
   try {
+    if (!databaseConfig.url) {
+      throw new Error("MONGODB_URL environment variable is missing.");
+    }
+
     mongoose.connection.on("connected", () => {
-      console.log("DB Connected");
+      console.log(" MongoDB Connected");
     });
 
     mongoose.connection.on("error", (err) => {
-      console.error(`MongoDB connection error: ${err.message}`);
+      console.error(" MongoDB Connection Error:", err.message);
     });
 
-    const url = databaseConfig.url || "mongodb://localhost:27017";
-    const connectionString = url.endsWith("/e-commerce") ? url : `${url}/e-commerce`;
+    mongoose.connection.on("disconnected", () => {
+      console.warn("MongoDB Disconnected");
+    });
 
-    await mongoose.connect(connectionString);
+    await mongoose.connect(databaseConfig.url, {
+      serverSelectionTimeoutMS: 10000,
+    });
+
+    console.log("Successfully connected to MongoDB Atlas");
+
     await seedInitialProducts();
   } catch (error) {
-    console.error(`Failed to connect to database: ${error.message}`);
+    console.error("Failed to connect to MongoDB:");
+    console.error(error.message);
   }
 };
 

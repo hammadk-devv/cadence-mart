@@ -24,21 +24,22 @@ dotenv.config();
 // Fail-fast environment check on startup
 validateEnv();
 
-// Initialize apps & DB
+// Initialize app & services
 const app = express();
 const port = process.env.PORT || 4000;
+
 connectDB();
 connectCloudinary();
 
-// 1. Request tracing UUID
+// Request tracing
 app.use(requestId);
 
-// 2. Security & Optimization middlewares
+// Security & Optimization
 app.use(helmet());
 app.use(compression());
 app.use(express.json());
 
-// Custom NoSQL Injection Sanitizer middleware
+// Custom NoSQL Injection Sanitizer
 app.use((req, res, next) => {
   const sanitize = (obj) => {
     if (obj && typeof obj === "object") {
@@ -51,41 +52,46 @@ app.use((req, res, next) => {
       }
     }
   };
+
   sanitize(req.body);
   sanitize(req.query);
   sanitize(req.params);
+
   next();
 });
 
 app.use(hpp());
 app.disable("x-powered-by");
 
-// CORS configuration from centralized origin lists
+// CORS
 const corsOptions = {
   origin: (origin, callback) => {
     if (!origin) return callback(null, true);
+
     if (
       securityConfig.allowedOrigins.includes("*") ||
       securityConfig.allowedOrigins.includes(origin)
     ) {
       return callback(null, true);
     }
+
     return callback(new Error("Not allowed by CORS"));
   },
   credentials: true,
 };
+
 app.use(cors(corsOptions));
 
-// 3. General API rate limiter
+// API Rate Limiter
 app.use("/api", apiLimiter);
 
-// Api endpoints
+// Routes
 app.use("/api/user", userRouter);
 app.use("/api/product", productRouter);
 app.use("/api/cart", cartRouter);
 app.use("/api/admin", adminRouter);
 
-// Health audit probe
+// Health Check
 app.get("/health", (req, res) => {
   res.json({
     status: "OK",
@@ -99,23 +105,31 @@ app.get("/health", (req, res) => {
   });
 });
 
+// Root
 app.get("/", (req, res) => {
   res.send("API Working");
 });
 
-// 4. Central error middleware catcher
+// Global Error Handler
 app.use(errorHandler);
 
+/**
+ * Local server only.
+ * Vercel imports the Express app directly and must NOT call app.listen().
+ */
 let server;
-if (!process.env.VITEST) {
-  server = app.listen(port, () => console.log(`Server started on port ${port}`));
 
-  // Graceful process shutdown handler
+if (!process.env.VITEST && !process.env.VERCEL) {
+  server = app.listen(port, () => {
+    console.log(`Server started on port ${port}`);
+  });
+
   const gracefulShutdown = (signal) => {
     console.log(`Received ${signal}. Starting graceful shutdown...`);
 
     server.close(async () => {
       console.log("HTTP server closed.");
+
       try {
         await mongoose.connection.close(false);
         console.log("MongoDB connection closed.");
@@ -126,7 +140,6 @@ if (!process.env.VITEST) {
       }
     });
 
-    // Force close connection pool after 10s timeout
     setTimeout(() => {
       console.error("Forcing shutdown after timeout.");
       process.exit(1);

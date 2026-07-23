@@ -1,0 +1,10 @@
+export { default as ProductGallery } from "./ProductGallery";
+export { default as ProductInfo } from "./ProductInfo";
+export { default as ProductVariants } from "./ProductVariants";
+export { default as ProductFeatures } from "./ProductFeatures";
+export { default as ProductTabs } from "./ProductTabs";
+export { default as FrequentlyBoughtTogether } from "./FrequentlyBoughtTogether";
+export { default as RelatedProducts } from "./RelatedProducts";
+export { default as RecentlyViewed } from "./RecentlyViewed";
+export { default as StickyPurchasePanel } from "./StickyPurchasePanel";
+export { default as ReviewsFoundation } from "./ReviewsFoundation";

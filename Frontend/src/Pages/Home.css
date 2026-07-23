@@ -1,0 +1,18 @@
+html {
+  height: 100%;
+}
+
+.product {
+  background-color: var(--background-color);
+  display: flex;
+}
+
+.dark-active {
+  background-color: var(--primary-accent-color);
+}
+
+@media (max-width: 600px) {
+  .product {
+    display: block;
+  }
+}

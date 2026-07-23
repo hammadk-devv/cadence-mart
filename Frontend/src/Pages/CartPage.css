@@ -1,0 +1,6 @@
+.cart-page {
+  padding-top: 100px;
+}
+.dark-active {
+  background-color: var(--bg-color-dark);
+}

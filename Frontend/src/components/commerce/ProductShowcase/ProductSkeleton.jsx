@@ -1,0 +1,19 @@
+import Skeleton from "../../ui/Skeleton";
+
+export default function ProductSkeleton() {
+  return (
+    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+      {[1, 2, 3, 4].map((i) => (
+        <div
+          key={i}
+          className="flex flex-col p-4 bg-[var(--color-card-bg)] border border-[var(--color-card-border)] rounded-[var(--radius-lg)] gap-3"
+        >
+          <Skeleton variant="rect" width="100%" height="200px" />
+          <Skeleton variant="text" width="60%" />
+          <Skeleton variant="text" width="40%" />
+          <Skeleton variant="rect" width="100%" height="36px" />
+        </div>
+      ))}
+    </div>
+  );
+}

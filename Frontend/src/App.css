@@ -1,0 +1,85 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+
+/* Univarsal Font */
+* {
+  font-family: var(--font-family), "Poppins", sans-serif;
+}
+* {
+  padding: 0;
+  margin: 0;
+}
+:root {
+  /* Font size */
+  --font-ll: 42px;
+  --font-lm: 32px;
+  --font-ls: 24px;
+
+  --font-l: 18px;
+  --font-m: 16px;
+  --font-s: 14px;
+
+  --font-sl: 16px;
+  --font-sm: 13px;
+  --font-ss: 11px;
+
+  /* Colors */
+  --primary-color: #3a506b;
+  --secondary-color: #5bc0be;
+
+  /* Background color */
+  --background-color: #f4f4f9;
+
+  /* Button color */
+  --button-color1: #3a506b;
+  --button-color2: #ff8c42;
+
+  /* Text color */
+  --text-color: #0b132b;
+
+  /* Dark Mode color*/
+  --bg-color-light: #f4f4f9;
+  --bg-color-dark: #222831;
+  --text-color-light: #0b132b;
+  --text-color-dark: #eeeeee;
+  --button-bg-color: #76abae;
+  --primary-accent-color: #31363f;
+
+  /* Dark Shimmer effect color */
+  --dark-shimmer-effect: rgb(63, 58, 58);
+  --dark-shimmer-effect-animation: rgb(90, 82, 82);
+  --light-shimmer-effect: #808080;
+  --light-shimmer-effect-animation: #979595;
+}
+
+/* Utilities */
+
+html.dark {
+  --color-bg-primary: #09090b;
+  --color-bg-secondary: #18181b;
+  --color-text-primary: #f4f4f5;
+  --color-text-secondary: #a1a1aa;
+  --color-border: #27272a;
+  --color-card-bg: #18181b;
+  --color-card-border: #27272a;
+  color-scheme: dark;
+}
+
+body {
+  background-color: var(--color-bg-primary, #ffffff);
+  color: var(--color-text-primary, #09090b);
+  transition:
+    background-color 0.3s ease,
+    color 0.3s ease;
+}
+
+.primary-dark-active {
+  background-color: var(--bg-color-dark);
+  color: var(--text-color-dark);
+  width: 100vw;
+  height: 100vh;
+}
+
+.secondry-dark-active {
+  background-color: var(--primary-accent-color);
+  color: var(--text-color-dark);
+}

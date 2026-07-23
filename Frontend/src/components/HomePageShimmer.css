@@ -1,0 +1,130 @@
+.shimmer-card {
+  display: flex;
+  flex-direction: column;
+  background-color: var(--color-bg-primary, #ffffff);
+  border: 1px solid var(--color-border, #e4e4e7);
+  border-radius: var(--radius-lg, 0.75rem);
+  overflow: hidden;
+  box-sizing: border-box;
+}
+
+.shimmer-dark-active {
+  background-color: #18181b;
+  border-color: #27272a;
+}
+
+.shimmer-img {
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  background: #f4f4f5;
+  position: relative;
+  overflow: hidden;
+}
+
+.shimmer-dark-active .shimmer-img {
+  background: #09090b;
+}
+
+.shimmer-img::after,
+.shimmer-line::after,
+.shimmer-btn::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  transform: translateX(-100%);
+  background-image: linear-gradient(
+    90deg,
+    rgba(255, 255, 255, 0) 0%,
+    rgba(255, 255, 255, 0.3) 20%,
+    rgba(255, 255, 255, 0.4) 60%,
+    rgba(255, 255, 255, 0) 100%
+  );
+  animation: shimmer-wave 2s infinite;
+}
+
+.shimmer-dark-active .shimmer-img::after,
+.shimmer-dark-active .shimmer-line::after,
+.shimmer-dark-active .shimmer-btn::after {
+  background-image: linear-gradient(
+    90deg,
+    rgba(39, 39, 42, 0) 0%,
+    rgba(39, 39, 42, 0.2) 20%,
+    rgba(39, 39, 42, 0.3) 60%,
+    rgba(39, 39, 42, 0) 100%
+  );
+}
+
+@keyframes shimmer-wave {
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+.shimmer-details {
+  padding: 1.25rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.shimmer-line {
+  height: 0.75rem;
+  background-color: #f4f4f5;
+  border-radius: 9999px;
+  position: relative;
+  overflow: hidden;
+}
+
+.shimmer-dark-active .shimmer-line {
+  background-color: #27272a;
+}
+
+.shimmer-category {
+  width: 30%;
+  height: 0.625rem;
+}
+
+.shimmer-title {
+  width: 90%;
+  height: 0.875rem;
+}
+
+.shimmer-title-short {
+  width: 60%;
+  height: 0.875rem;
+  margin-top: -0.25rem;
+}
+
+.shimmer-rating {
+  width: 40%;
+  height: 0.625rem;
+  margin-bottom: 0.5rem;
+}
+
+.shimmer-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: auto;
+}
+
+.shimmer-price {
+  width: 30%;
+  height: 1.125rem;
+}
+
+.shimmer-btn {
+  width: 25%;
+  height: 2rem;
+  border-radius: var(--radius-md, 0.375rem);
+  background-color: #f4f4f5;
+  position: relative;
+  overflow: hidden;
+}
+
+.shimmer-dark-active .shimmer-btn {
+  background-color: #27272a;
+}
